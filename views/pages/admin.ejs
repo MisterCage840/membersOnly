@@ -1,0 +1,20 @@
+<%- include("../partials/layout-start") %> <%- include("../partials/header") %>
+
+<div class="container">
+  <h1>Become Admin</h1>
+
+  <% if (error) { %>
+  <div class="errors"><%= error %></div>
+  <% } %>
+
+  <form action="/admin" method="POST">
+    <div>
+      <label>Admin Passcode</label>
+      <input type="password" name="passcode" required />
+    </div>
+
+    <button type="submit">Become Admin</button>
+  </form>
+</div>
+
+<%- include("../partials/layout-end") %>

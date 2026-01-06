@@ -1,0 +1,38 @@
+<%- include("../partials/layout-start") %> <%- include("../partials/header") %>
+
+<div class="container">
+  <h1>New Message</h1>
+
+  <% if (errors.length) { %>
+  <div class="errors">
+    <ul>
+      <% errors.forEach((err) => { %>
+      <li><%= err.msg %></li>
+      <% }) %>
+    </ul>
+  </div>
+  <% } %>
+
+  <form action="/messages/new" method="POST">
+    <div>
+      <label>Title</label>
+      <input
+        type="text"
+        name="title"
+        value="<%= values.title || '' %>"
+        required
+      />
+    </div>
+
+    <div>
+      <label>Message</label>
+      <textarea name="text" rows="5" required>
+<%= values.text || '' %></textarea
+      >
+    </div>
+
+    <button type="submit">Post Message</button>
+  </form>
+</div>
+
+<%- include("../partials/layout-end") %>

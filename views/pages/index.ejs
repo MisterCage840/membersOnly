@@ -1,0 +1,32 @@
+<%- include("../partials/layout-start") %> <%- include("../partials/header") %>
+
+<div class="container">
+  <h1>Members Only Club</h1>
+
+  <% if (!messages.length) { %>
+  <p>No messages yet.</p>
+  <% } %> <% messages.forEach((msg) => { %>
+  <div class="message">
+    <h3><%= msg.title %></h3>
+    <p><%= msg.text %></p>
+    <small class="meta"
+      >on <%= new Date(msg.created_at).toLocaleString() %></small
+    >
+
+    <% if (currentUser && currentUser.membership_status) { %>
+    <small class="meta">
+      By <strong><%= msg.first_name %> <%= msg.last_name %></strong>
+      <!-- on <%= new Date(msg.created_at).toLocaleString() %> -->
+    </small>
+    <% } %> <% if (currentUser && currentUser.admin) { %>
+    <div class="danger">
+      <form action="/messages/<%= msg.id %>/delete" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+    <% } %>
+  </div>
+  <% }) %>
+</div>
+
+<%- include("../partials/layout-end") %>

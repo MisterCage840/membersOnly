@@ -1,0 +1,20 @@
+<%- include("../partials/layout-start") %> <%- include("../partials/header") %>
+
+<div class="container">
+  <h1>Join the Club</h1>
+
+  <% if (error) { %>
+  <div class="errors"><%= error %></div>
+  <% } %>
+
+  <form action="/join-club" method="POST">
+    <div>
+      <label>Secret Passcode</label>
+      <input type="password" name="passcode" required />
+    </div>
+
+    <button type="submit">Join</button>
+  </form>
+</div>
+
+<%- include("../partials/layout-end") %>
